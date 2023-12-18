@@ -1,85 +1,74 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import TopAppBar from '@/components/app/TopAppBar.vue';
+import NavigationRail from '@/components/app/NavigationRail.vue';
+import '@mdui/icons/menu.js';
+import '@mdui/icons/light-mode.js';
+import '@mdui/icons/light-mode--outlined.js';
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <mdui-layout class="layout">
+    <TopAppBar />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <NavigationRail />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <mdui-layout-main class="page-wrapper">
+      <main class="page mdui-prose">
+        <RouterView />
+      </main>
+    </mdui-layout-main>
+  </mdui-layout>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style lang="scss" scoped>
+.layout {
+  height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+.page-wrapper {
+  position: relative;
+  height: 100%;
+  background-color: rgb(var(--mdui-color-surface-container));
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  .page {
+    height: 98%;
+    margin: 0 1rem 0 0;
+    overflow: auto;
+    border-radius: var(--mdui-shape-corner-medium);
+    background-color: rgb(var(--mdui-color-background));
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .page::-webkit-scrollbar {
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: none;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .page::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .35);
   }
 
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
+  .page::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .4);
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+  }
 
-    padding: 1rem 0;
-    margin-top: 1rem;
+  .page::-webkit-scrollbar-thumb {
+    // border-radius: var(--mdui-shape-corner-medium);
+    background-color: rgba(0, 0, 0, .2);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(0, 0, 0, .10), inset 0px -1px 0px rgba(0, 0, 0, .07);
+  }
+
+  .page::-webkit-scrollbar-track:hover {
+    background-color: rgba(0, 0, 0, .1);
+    -webkit-box-shadow: inset 0px 0px 0px rgba(0, 0, 0, .05), inset 0px 0px 0px rgba(0, 0, 0, .01);
+  }
+
+  .page::-webkit-scrollbar-track {
+    border-radius: 0 var(--mdui-shape-corner-medium) var(--mdui-shape-corner-medium) 0;
+    overflow: hidden;
   }
 }
 </style>

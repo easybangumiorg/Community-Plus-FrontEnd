@@ -1,0 +1,33 @@
+.container-wrapper {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+
+    .container.with-contents {
+        padding-right: 18.25rem;
+    }
+
+    @media (min-width: 1080px) {
+        .container {
+            padding: 1rem 4rem;
+        }
+    }
+
+    @media (min-width: 840px) {
+        .container {
+            padding: 1rem 3rem;
+        }
+    }
+
+    @media (min-width: 600px) {
+        .container {
+            padding: 1rem 2rem;
+        }
+    }
+
+    .container {
+        margin: 0 auto;
+        padding: 1rem;
+        max-width: 63.875rem;
+    }
+}
