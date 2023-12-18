@@ -2,9 +2,11 @@
 import '@mdui/icons/light-mode.js';
 import '@mdui/icons/dark-mode.js';
 import '@mdui/icons/brightness-auto.js';
+import '@mdui/icons/login.js';
 import 'mdui/components/dropdown.js';
 import 'mdui/components/menu.js';
 import 'mdui/components/button-icon.js';
+import 'mdui/components/avatar.js';
 import {
     getTheme,
     setTheme,
@@ -56,10 +58,26 @@ const toggleTheme = () => {
             <mdui-icon-dark-mode v-else-if="themeRef == 'dark'"></mdui-icon-dark-mode>
             <mdui-icon-brightness-auto v-else></mdui-icon-brightness-auto>
         </mdui-button-icon>
+        <mdui-button-icon class="avatar">
+            <mdui-icon-login></mdui-icon-login>
+            <!-- <img src="https://avatars.githubusercontent.com/u/3030330?s=40&v=4" /> -->
+        </mdui-button-icon>
     </mdui-top-app-bar>
 </template>
 
 <style scoped lang="scss">
+.avatar {
+    margin-right: 1rem;
+    align-items: center;
+    justify-items: center;
+
+    img {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 1rem;
+    }
+}
+
 .title {
     color: inherit;
     text-decoration: none;

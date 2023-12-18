@@ -9,6 +9,7 @@ import '@mdui/icons/video-library.js';
 import '@mdui/icons/settings.js';
 import '@mdui/icons/bar-chart.js';
 import '@mdui/icons/movie.js';
+import '@mdui/icons/people.js';
 </script>
 
 <template>
@@ -20,7 +21,8 @@ import '@mdui/icons/movie.js';
         <mdui-navigation-rail-item><mdui-icon-category slot="icon"></mdui-icon-category>分类</mdui-navigation-rail-item>
         <mdui-navigation-rail-item><mdui-icon-movie slot="icon"></mdui-icon-movie>番剧</mdui-navigation-rail-item>
         <mdui-navigation-rail-item><mdui-icon-video-library
-                slot="icon"></mdui-icon-video-library>合集</mdui-navigation-rail-item>
+            slot="icon"></mdui-icon-video-library>合集</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item><mdui-icon-people slot="icon"></mdui-icon-people>用户</mdui-navigation-rail-item>
     </mdui-navigation-rail>
 </template>
 

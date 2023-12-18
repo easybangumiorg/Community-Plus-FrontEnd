@@ -1,7 +1,6 @@
 import 'mdui/mdui.css'
 import './assets/main.scss'
 import 'mdui'
-
 import { setColorScheme } from 'mdui';
 setColorScheme('#c2e7ff')
 
