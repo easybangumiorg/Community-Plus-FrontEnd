@@ -1,27 +1,19 @@
-# Community-Plus-FrontEnd
+<p align="center">
+  <a href="https://github.com/easybangumiorg/Community-Plus" target="blank"><img src="https://easybangumi.org/icons/FAVICON-RAW.png" width="200" alt="Community Plus LOGO" /></a>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+<p align="center">一个开源的（现在还没有）、轻量的番剧管理实现，用于纯纯看番社区版插件的管理前端，专为<a href="https://github.com/easybangumiorg/EasyBangumi" target="blank">纯纯看番</a>插件化而实现。</p>
 
-## Recommended IDE Setup
+## 描述
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+采用 [Vue3](https://cn.vuejs.org/) 作为 Web 前端框架
 
-## Type Support for `.vue` Imports in TS
+采用 [Pinia](https://pinia.vuejs.org/) 作为状态管理
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+采用 [Vue Router](https://router.vuejs.org/) 作为路由实现
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## 设置项目
 
 ```sh
 npm install
@@ -38,3 +30,18 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## 支持
+
+纯纯看番社区+ 采用[MPL-2.0](LICENSE)许可发行源代码，如果你有什么新的功能或者建议，欢迎加入我们。
+
+## 相关项目
+
+- 纯纯看番 - [EasyBangumi](https://github.com/easybangumiorg/EasyBangumi)
+- 纯纯看番社区+ 后端 - [Community-Plus](https://github.com/easybangumiorg/Community-Plus/)
+- 纯纯看番社区+ 管理前端 - [Community-Plus-FrontEnd](https://github.com/easybangumiorg/Community-Plus-FrontEnd)
+- 纯纯看番社区+ 插件 - [EasyBangumi-Extension-Community-Plus](https://github.com/easybangumiorg/EasyBangumi-Extension-Community-Plus)
+
+## 许可
+
+该项目由 [MPL-2.0](LICENSE) 许可发行。
