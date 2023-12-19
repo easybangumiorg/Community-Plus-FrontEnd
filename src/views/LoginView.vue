@@ -5,6 +5,7 @@ import { snackbar } from 'mdui';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { sha256 } from 'js-sha256';
+import { onMounted } from 'vue'
 
 const route = useRoute();
 const router = useRouter();
@@ -15,6 +16,19 @@ const loginForm = ref({
     passwd: '',
 });
 
+onMounted(() => {
+    if (user.isLogin)
+        user.getProfile()
+            .catch((err) => {
+                if (err.code) {
+                    snackbar({
+                        message: `获取用户信息失败: ${err.msg}`,
+                    });
+                }
+            });
+
+});
+
 const commandLogin = async () => {
     if (loginForm.value.account === '' || loginForm.value.passwd === '') {
         snackbar({
@@ -22,9 +36,8 @@ const commandLogin = async () => {
         });
         return;
     }
-    // loginForm.value.passwd = sha256(loginForm.value.passwd);
-    // const res = await user.login(loginForm.value.account, loginForm.value.passwd);
-    user.login(loginForm.value.account, sha256(loginForm.value.passwd)).then((res) => {
+    loginForm.value.passwd = sha256(loginForm.value.passwd);
+    user.login(loginForm.value.account, loginForm.value.passwd).then((res) => {
         if (res) {
             router.push({ path: '/', });
         }

@@ -42,4 +42,13 @@ export const userCtrl: { [key: string]: visible } = {
         canEditCollection: true,
         adminEditCollection: true,
     },
+    "UNLOGIN": {
+        canEditSelfProfile: false,
+        canUseUserCenter: false,
+        adminEditCategory: false,
+        canEditPost: false,
+        adminEditPost: false,
+        canEditCollection: false,
+        adminEditCollection: false,
+    }
 }

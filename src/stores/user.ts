@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { ROOT_API_URL, userCtrl } from '@/shared'
 import { requestProc } from '@/shared/requestProc'
+import { getProfile } from '@/services/user'
 
 
 export const useUserStore = defineStore('user', {
@@ -53,6 +53,34 @@ export const useUserStore = defineStore('user', {
 
                     return res
                 })
+        },
+        async getProfile() { // 获取profile的函数同时控制登录状态
+            return getProfile(this.token).then(res => {
+                this.$patch({ user: { profile: res.data } })
+                return res
+            }).catch(err => {
+                this.token = ""
+                throw err
+            })
+        },
+        logout() {
+            this.$patch({ token: "" })
+            this.$patch({
+                user: {
+                    // 用户信息
+                    id: NaN,
+                    account: "un_login_user",
+                    email: "未设定email",
+                    createdAt: new Date(),
+                    role: "UNLOGIN",
+                    profile: {
+                        name: "未登录",
+                        bio: "no bio.",
+                        avatar: "/logo.ico",
+                    },
+                }
+            })
+            this.$patch({ visible: userCtrl["UNLOGIN"] })
         },
     },
 })

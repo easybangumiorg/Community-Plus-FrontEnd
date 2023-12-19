@@ -21,6 +21,11 @@ const commandLogin = () => {
     router.push({ path: '/login', });
 }
 
+const commandLogout = () => {
+    user.logout();
+    router.push({ path: '/login', });
+}
+
 // 以下是暗黑模式的本地实现，如果需要在任意组件可访问，需要创建一个store
 const themeRef = ref(String(getTheme()));
 
@@ -62,7 +67,7 @@ const toggleTheme = () => {
             <a href="http://www.easybangumi.org" target="_self" class="title small">社区+ Console</a>
         </mdui-top-app-bar-title>
         <div style="flex-grow: 1"></div>
-        <mdui-button-icon @click="toggleTheme()">
+        <mdui-button-icon @click="toggleTheme">
             <mdui-icon-light-mode v-if="themeRef == 'light'"></mdui-icon-light-mode>
             <mdui-icon-dark-mode v-else-if="themeRef == 'dark'"></mdui-icon-dark-mode>
             <mdui-icon-brightness-auto v-else></mdui-icon-brightness-auto>
@@ -80,11 +85,11 @@ const toggleTheme = () => {
                     <span>{{ user.profile.bio }}</span>
                 </div>
                 <div class="buttons-field">
-                    <mdui-button class="left">
+                    <mdui-button @click="router.push({path:`/profile/${user.info.id}`})" :disabled="!user.vis.canEditSelfProfile" class="left">
                         管理账号
                         <mdui-icon-info slot="icon"></mdui-icon-info>
                     </mdui-button>
-                    <mdui-button class="right">
+                    <mdui-button @click="commandLogout" class="right">
                         退出登录
                         <mdui-icon-logout slot="end-icon" name="attach_file"></mdui-icon-logout>
                     </mdui-button>

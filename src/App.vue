@@ -16,8 +16,8 @@ const user = useUserStore();
 
     <NavigationRail />
 
-    <mdui-layout-main class="page-wrapper">
-      <main class="page mdui-prose">
+    <mdui-layout-main class="page-wrapper mdui-prose">
+      <main class="page">
         <RouterView />
       </main>
     </mdui-layout-main>
