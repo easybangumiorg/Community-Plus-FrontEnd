@@ -10,6 +10,10 @@ import '@mdui/icons/settings.js';
 import '@mdui/icons/bar-chart.js';
 import '@mdui/icons/movie.js';
 import '@mdui/icons/people.js';
+
+import { useUserStore } from '@/stores';
+
+const user = useUserStore();
 </script>
 
 <template>
@@ -21,14 +25,14 @@ import '@mdui/icons/people.js';
         <mdui-navigation-rail-item><mdui-icon-category slot="icon"></mdui-icon-category>分类</mdui-navigation-rail-item>
         <mdui-navigation-rail-item><mdui-icon-movie slot="icon"></mdui-icon-movie>番剧</mdui-navigation-rail-item>
         <mdui-navigation-rail-item><mdui-icon-video-library
-            slot="icon"></mdui-icon-video-library>合集</mdui-navigation-rail-item>
-            <mdui-navigation-rail-item><mdui-icon-people slot="icon"></mdui-icon-people>用户</mdui-navigation-rail-item>
+                slot="icon"></mdui-icon-video-library>合集</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item v-if="user.vis.canUseUserCenter"><mdui-icon-people slot="icon"></mdui-icon-people>用户</mdui-navigation-rail-item>
     </mdui-navigation-rail>
 </template>
 
 <style scoped lang="scss">
 .navigation-rail {
     background-color: rgb(var(--mdui-color-surface-container));
-    z-index: 3000;
+    z-index: 1000;
 }
 </style>

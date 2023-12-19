@@ -5,6 +5,9 @@ import NavigationRail from '@/components/app/NavigationRail.vue';
 import '@mdui/icons/menu.js';
 import '@mdui/icons/light-mode.js';
 import '@mdui/icons/light-mode--outlined.js';
+import { useUserStore } from './stores';
+
+const user = useUserStore();
 </script>
 
 <template>
