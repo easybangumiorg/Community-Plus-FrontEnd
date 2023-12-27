@@ -23,6 +23,7 @@ onMounted(() => {
                 if (err.code) {
                     snackbar({
                         message: `获取用户信息失败: ${err.msg}`,
+                        placement: 'top',
                     });
                 }
             });
@@ -33,18 +34,24 @@ const commandLogin = async () => {
     if (loginForm.value.account === '' || loginForm.value.passwd === '') {
         snackbar({
             message: "请输入账号和密码",
+            placement: 'top',
         });
         return;
     }
     loginForm.value.passwd = sha256(loginForm.value.passwd);
     user.login(loginForm.value.account, loginForm.value.passwd).then((res) => {
         if (res) {
+            snackbar({
+                message: `欢迎回来，${user.profile.name}`,
+                placement: 'top',
+            });
             router.push({ path: '/', });
         }
     }).catch((err) => {
         if (err.code) {
             snackbar({
                 message: `登录失败: ${err.msg}`,
+                placement: 'top',
             });
         }
     });

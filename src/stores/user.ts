@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ROOT_API_URL, userCtrl } from '@/shared'
 import { requestProc } from '@/shared/requestProc'
-import { getProfile } from '@/services/user'
+import { get } from '@/services/request'
 
 
 export const useUserStore = defineStore('user', {
@@ -55,7 +55,7 @@ export const useUserStore = defineStore('user', {
                 })
         },
         async getProfile() { // 获取profile的函数同时控制登录状态
-            return getProfile(this.token).then(res => {
+            return get('/user/profile', token).then(res => {
                 this.$patch({ user: { profile: res.data } })
                 return res
             }).catch(err => {
