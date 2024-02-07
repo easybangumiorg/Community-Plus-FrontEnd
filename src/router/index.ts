@@ -6,47 +6,47 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'overview',
+      name: 'overview', // 概览
       component: HomeView
     },
     {
       path: '/about',
-      name: 'about',
+      name: 'about', // 关于
       component: () => import('../views/AboutView.vue')
     },
     {
       path: '/login',
-      name: 'login',
+      name: 'login', // 登录
       component: () => import('../views/LoginView.vue')
     },
     {
       path: '/category',
-      name: 'category',
+      name: 'category', // 分类管理
       component: () => import('../views/CategoryView.vue')
     },
     {
       path: '/post',
-      name: 'post',
+      name: 'post',  // 番剧管理
       component: () => import('../views/PostView.vue')
     },
     {
       path: '/collection',
-      name: 'collection',
+      name: 'collection', // 合集管理
       component: () => import('../views/CollectionView.vue')
     },
     {
       path: '/user',
-      name: 'user',
+      name: 'user', // 用户管理
       component: () => import('../views/UserView.vue')
     },
     {
       path: '/profile',
-      name: 'profile',
+      name: 'profile', // 个人中心
       component: () => import('../views/ProfileView.vue')
     },
     {
       path: '/settings',
-      name: 'settings',
+      name: 'settings', // 系统设置
       component: () => import('../views/SettingsView.vue')
     }
   ]
