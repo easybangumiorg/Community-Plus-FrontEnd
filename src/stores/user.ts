@@ -55,7 +55,7 @@ export const useUserStore = defineStore('user', {
                 })
         },
         async getProfile() { // 获取profile的函数同时控制登录状态
-            return get('/user/profile', token).then(res => {
+            return get('/user/profile', this.token).then(res => {
                 this.$patch({ user: { profile: res.data } })
                 return res
             }).catch(err => {

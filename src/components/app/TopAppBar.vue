@@ -85,7 +85,7 @@ const toggleTheme = () => {
                     <span>{{ user.profile.bio }}</span>
                 </div>
                 <div class="buttons-field">
-                    <mdui-button @click="router.push({path:`/profile/${user.info.id}`})" :disabled="!user.vis.canEditSelfProfile" class="left">
+                    <mdui-button @click="router.push({path:`/profile`})" :disabled="!user.vis.canEditSelfProfile" class="left">
                         管理账号
                         <mdui-icon-info slot="icon"></mdui-icon-info>
                     </mdui-button>

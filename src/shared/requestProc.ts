@@ -17,6 +17,13 @@ export const requestMsgDict: { [key: string]: string } = {
     'Category is not empty': '分类存在未删除的引用',
 }
 
+/**
+* # 处理请求返回
+* 
+* 会将服务端的一些错误格式转换为统一的格式，并对请求中产生的错误进行处理
+* @param data 请求返回数据
+* @returns 返回数据
+*/
 export function requestProc(data: requestDto) {
     if (data.statusCode) data.code = data.statusCode;
     if (data.message) data.msg = data.message;

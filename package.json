@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdui/icons": "^1.0.2",
     "js-sha256": "^0.10.1",
+    "marked": "^12.0.0",
     "mdui": "^2.0.3",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
