@@ -45,6 +45,11 @@ const router = createRouter({
       component: () => import('../views/ProfileView.vue')
     },
     {
+      path: '/chpasswd',
+      name: 'chpasswd', // 修改密码
+      component: () => import('../views/ChangePasswordView.vue')
+    },
+    {
       path: '/settings',
       name: 'settings', // 系统设置
       component: () => import('../views/SettingsView.vue')

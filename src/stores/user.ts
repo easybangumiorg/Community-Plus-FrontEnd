@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { ROOT_API_URL, userCtrl } from '@/shared'
+import { ROOT_API_URL, UnauthorizedException, userCtrl } from '@/shared'
 import { requestProc } from '@/shared/requestProc'
-import { get } from '@/services/request'
+import { get, post } from '@/services/request'
 
 
 export const useUserStore = defineStore('user', {
@@ -40,28 +40,53 @@ export const useUserStore = defineStore('user', {
     actions: {
         async login(account: string, passwd: string) {
             const state = this
-            return fetch(ROOT_API_URL + '/user/signin', {
+            const res = await fetch(ROOT_API_URL + '/user/signin', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ account, passwd })
             })
-                .then(async res => requestProc(await res.json()))
-                .then(res => {
-                    state.token = res.data.token
-                    state.$patch({ user: res.data })
-                    state.$patch({ visible: userCtrl[res.data.role] })
-
-                    return res
-                })
+            const res_1 = requestProc(await res.json())
+            state.token = res_1.data.token
+            state.$patch({ user: res_1.data })
+            state.$patch({ visible: userCtrl[res_1.data.role] })
+            return res_1
         },
         async getProfile() { // 获取profile的函数同时控制登录状态
-            return get('/user/profile', this.token).then(res => {
+            try {
+                const res = await get('/user/profile', this.token)
                 this.$patch({ user: { profile: res.data } })
                 return res
-            }).catch(err => {
-                this.token = ""
+            } catch (err) {
+                if (err instanceof UnauthorizedException) {
+                    this.logout()
+                }
                 throw err
-            })
+            }
+        },
+        async editProfile({ name, bio, avatar }: any) {
+            try {
+                const res = await post('/user/profile', { name, bio, avatar }, this.token)
+                const { _name, _bio, _avatar } = res.data
+                this.$patch({ user: { profile: { name: _name, bio: _bio, avatar: _avatar } } })
+                return res
+            } catch (err) {
+                if (err instanceof UnauthorizedException) {
+                    this.logout()
+                }
+                throw err
+            }
+        },
+        async refreshToken() {
+            try {
+                const res = await get('/user/refresh', this.token)
+                this.$patch({ token: res.data })
+                return res
+            } catch (err) {
+                if (err instanceof UnauthorizedException) {
+                    this.logout()
+                }
+                throw err
+            }
         },
         logout() {
             this.$patch({ token: "" })

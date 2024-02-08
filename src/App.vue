@@ -1,13 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import TopAppBar from '@/components/app/TopAppBar.vue';
 import NavigationRail from '@/components/app/NavigationRail.vue';
 import '@mdui/icons/menu.js';
 import '@mdui/icons/light-mode.js';
 import '@mdui/icons/light-mode--outlined.js';
 import { useUserStore } from './stores';
+import { onMounted } from 'vue';
+import { snackbar } from 'mdui';
 
 const user = useUserStore();
+
+function autoRefeshToken() {
+  setTimeout(() => {
+    user.refreshToken().catch(err => {
+      snackbar({
+        message: err.message,
+        placement: 'top',
+      });
+    })
+    autoRefeshToken();
+  }, 1000 * 60 * 10);
+};
+
+onMounted(() => {
+  autoRefeshToken();
+});
 </script>
 
 <template>
@@ -18,7 +36,11 @@ const user = useUserStore();
 
     <mdui-layout-main class="page-wrapper mdui-prose">
       <main class="page">
-        <RouterView />
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </main>
     </mdui-layout-main>
   </mdui-layout>
@@ -73,5 +95,15 @@ const user = useUserStore();
     border-radius: 0 var(--mdui-shape-corner-medium) var(--mdui-shape-corner-medium) 0;
     overflow: hidden;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
