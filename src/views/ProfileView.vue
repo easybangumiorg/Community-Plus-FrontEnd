@@ -8,6 +8,12 @@ import { useRouter } from 'vue-router';
 const user = useUserStore();
 const router = useRouter();
 
+onMounted(()=> {
+    if (!user.visible.canEditSelfProfile) {
+        router.push({ name: 'home' });
+    }
+})
+
 function isValidUrl(value: string) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
@@ -29,14 +35,14 @@ const action_delog = async () => {
 const action_email = () => {
     alert({
         headline: "邮箱",
-        description: "邮箱在注册账号时指定，目前并没有围绕邮箱的应用，但是我们会在未来的版本中增加邮箱验证功能，暂时不支持修改。",
+        description: "邮箱在注册账号时指定，目前并没有围绕邮箱的应用，但是我们会在未来的版本中增加邮箱验证功能，目前暂时不支持修改。",
         confirmText: "OK",
     });
 }
 const action_avatar = () => {
     prompt({
         headline: "更改头像",
-        description: "请输入你的头像链接，头像以链接的形式保存在服务器中并以外链的形式获取，请不要滥用此服务。",
+        description: "请输入你的头像链接，头像以链接的形式保存在服务器中并以外链的形式获取。",
         confirmText: "保存",
         cancelText: "取消",
         textFieldOptions: {
@@ -73,7 +79,7 @@ const action_avatar = () => {
 const action_name = () => {
     prompt({
         headline: "更改昵称",
-        description: "请输入你的新昵称，你的昵称有可能会在纯纯看番社区+的插件中展示，请不要滥用此功能。",
+        description: "请输入你的新昵称，你的昵称有可能会在纯纯看番社区+的插件中展示。",
         confirmText: "保存",
         cancelText: "取消",
         textFieldOptions: {
@@ -104,7 +110,7 @@ const action_name = () => {
 const action_bio = () => {
     prompt({
         headline: "更改签名",
-        description: "请输入你的新签名，签名会在用户详情页面展示，请不要滥用此功能。",
+        description: "请输入你的新签名，签名会在用户详情页面展示。",
         confirmText: "保存",
         cancelText: "取消",
         textFieldOptions: {
@@ -269,66 +275,6 @@ const action_bio = () => {
     }
 }
 
-.list-card {
-    width: 100%;
-    background-color: rgb(var(--mdui-color-surface));
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    box-shadow: var(--mdui-elevation-level3);
-
-    &:has(+ .list-card) {
-        margin-bottom: 1.5rem;
-    }
-
-    .list-card-header {
-        padding: 1rem;
-    }
-
-    .list-card-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem 1.2rem;
-        border-top: 0.1rem solid rgb(var(--mdui-color-surface-container));
-        line-height: 1.4;
-
-        &:not(:has(+ .list-card-item)) {
-            border-bottom: 0.1rem solid rgb(var(--mdui-color-surface-container));
-        }
-
-        a {
-            cursor: pointer;
-            border-bottom: 0.0625rem solid transparent;
-
-            &:hover {
-                border-bottom: .0625rem solid rgb(var(--mdui-color-primary));
-            }
-        }
-    }
-
-    .clickable {
-        cursor: pointer;
-
-        &:hover {
-            background-color: rgba(var(--mdui-color-primary), var(--mdui-state-layer-hover));
-        }
-
-        &:focus {
-            background-color: rgba(var(--mdui-color-primary), var(--mdui-state-layer-focus));
-        }
-
-        &:active {
-            background-color: rgba(var(--mdui-color-primary), var(--mdui-state-layer-pressed));
-        }
-    }
-
-    .list-card-footer {
-        padding: 1rem 1.2rem;
-        width: 100%;
-        background-color: rgb(var(--mdui-color-surface-container));
-    }
-}
-
 .item-info {
     flex: 1;
     flex-grow: 1;
@@ -353,10 +299,6 @@ const action_bio = () => {
     .item-info {
         align-items: flex-start;
         flex-flow: column;
-    }
-
-    span {
-        line-height: 1.4;
     }
 }
 </style>

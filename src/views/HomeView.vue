@@ -5,6 +5,7 @@ import { snackbar } from 'mdui/functions/snackbar';
 import { useUserStore } from '@/stores';
 
 const user = useUserStore()
+
 const overview = reactive({
   user: { count: 0 },
   post: {
@@ -105,7 +106,7 @@ onMounted(() => {
 
       <h1>整个社区</h1>
 
-      <p>这里展示纯纯看番社区+服务器存储的一些描述性信息，遗憾的是截至目前，我们并没有高级全局统计API的计划，可以预见的是随着将来的数据的逐渐增多，该简易概览接口将不会返回实时数据。</p>
+      <p>这里展示纯纯看番社区+服务器存储的一些描述性信息，遗憾的是截至目前，我们并没有高级全局统计API的计划，可以预见的是随着将来数据的逐渐增多，该简易概览接口将不会返回实时数据。</p>
 
       <div class="cards">
         <mdui-card class="card">

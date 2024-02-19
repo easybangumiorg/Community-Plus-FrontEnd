@@ -62,25 +62,26 @@ const commandLogin = async () => {
 <template>
     <div class="container-wrapper">
         <main class="container" style="text-align: center;">
-            <mdui-card class="login-card">
-                <div class="card-header">
-                    <h2>需要登录</h2>
-                    <span>社区+ Console</span>
-                </div>
-                <div class="text-field">
-                    <span v-if="user.isLogin">已登录: {{ user.profile.name }}</span>
-                    <mdui-text-field :value="loginForm.account" @input="loginForm.account = $event.target.value"
-                        label="Account or Email"></mdui-text-field>
-                    <mdui-text-field :value="loginForm.passwd" @input="loginForm.passwd = $event.target.value"
-                        type="password" toggle-password label="Password"></mdui-text-field>
-                </div>
-                <div class="card-bottom">
-                    <mdui-button @click="commandLogin">
-                        登录
-                        <mdui-icon-arrow-forward slot="end-icon"></mdui-icon-arrow-forward>
-                    </mdui-button>
-                </div>
-            </mdui-card>
+            <form @submit="commandLogin" method="dialog">
+                <mdui-card class="login-card">
+                    <div class="card-header">
+                        <h2>需要登录</h2>
+                        <span>社区+ Console</span>
+                    </div>
+                    <div class="text-field">
+                        <span v-if="user.isLogin">已登录: {{ user.profile.name }}</span>
+                        <mdui-text-field v-model.trim="loginForm.account" label="账号"></mdui-text-field>
+                        <mdui-text-field v-model.trim="loginForm.passwd" type="password" toggle-password
+                            label="密码"></mdui-text-field>
+                    </div>
+                    <div class="card-bottom">
+                        <mdui-button type="submit">
+                            登录
+                            <mdui-icon-arrow-forward slot="end-icon"></mdui-icon-arrow-forward>
+                        </mdui-button>
+                    </div>
+                </mdui-card>
+            </form>
         </main>
     </div>
 </template>

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'overview', // 概览
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/about',
@@ -23,6 +22,11 @@ const router = createRouter({
       path: '/category',
       name: 'category', // 分类管理
       component: () => import('../views/CategoryView.vue')
+    },
+    {
+      path: '/category/:cid',
+      name: 'category-info', // 分类内项管理
+      component: () => import('../views/CategoryInfoView.vue')
     },
     {
       path: '/post',
@@ -43,6 +47,11 @@ const router = createRouter({
       path: '/profile',
       name: 'profile', // 个人中心
       component: () => import('../views/ProfileView.vue')
+    },
+    {
+      path: '/profile/:id',
+      name: 'profile-detail', // 用户信息
+      component: () => import('../views/ProfileDetailView.vue')
     },
     {
       path: '/chpasswd',
