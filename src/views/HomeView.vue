@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import { getOverview, getUserOverview } from '@/services/overview'
-import { snackbar } from 'mdui/functions/snackbar';
 import { useUserStore } from '@/stores';
+import { showErr } from '@/shared/requestProc';
 
 const user = useUserStore()
 
@@ -38,25 +38,13 @@ onMounted(() => {
     overview.post = res.data.post
     overview.category = res.data.category
     overview.collection = res.data.collection
-  }).catch((err) => {
-    if (err.code) {
-      snackbar({
-        message: `${err.msg}`,
-        placement: 'top',
-      });
-    }
-  });
+  })
+    .catch(showErr());
   getUserOverview().then((res) => {
     userOverview.post = res.data.post
     userOverview.collection = res.data.collection
-  }).catch((err) => {
-    if (err.code) {
-      snackbar({
-        message: `${err.msg}`,
-        placement: 'top',
-      });
-    }
-  });
+  })
+    .catch(showErr());
 })
 </script>
 

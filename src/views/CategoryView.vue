@@ -2,7 +2,6 @@
 import { getCategoryList, addCategory } from '@/services/category';
 import { onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import '@mdui/icons/add.js';
 import { useUserStore } from '@/stores';
 import { alert, prompt, snackbar } from 'mdui'
 

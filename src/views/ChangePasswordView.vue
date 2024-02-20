@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
-import { onMounted, ref,reactive } from 'vue';
+import { onMounted, ref, reactive } from 'vue';
 import { snackbar } from 'mdui';
-import { chpasswd } from '@/services/user';
 import { sha256 } from 'js-sha256';
 import { useRouter } from 'vue-router';
 
@@ -53,13 +52,12 @@ const commandSubmit = () => {
   }
   const oldPasswd = sha256(formChangePwd.oldPwd);
   const newPasswd = sha256(formChangePwd.newPwd);
-  chpasswd(oldPasswd, newPasswd).then((res) => {
-    if (res) {
+  user.chpasswd(oldPasswd, newPasswd).then((res) => {
+    if (res.code === 200) {
       snackbar({
-        message: '修改密码成功',
+        message: '修改密码成功，请重新登录',
         placement: 'top',
       });
-      user.logout();
       router.push({ path: '/login' });
     }
   }).catch((err) => {
@@ -80,16 +78,19 @@ const commandSubmit = () => {
       <form method="dialog" @submit="commandSubmit">
         <span v-if="user.isLogin">已登录: {{ user.profile.name }}</span>
         <p>
-          <mdui-text-field type="password" v-model.trim="formChangePwd.oldPwd" toggle-password label="旧密码"></mdui-text-field>
+          <mdui-text-field type="password" v-model.trim="formChangePwd.oldPwd" toggle-password
+            label="旧密码"></mdui-text-field>
         </p>
         <p>
-          <mdui-text-field type="password" v-model.trim="formChangePwd.newPwd" toggle-password label="新密码"></mdui-text-field>
+          <mdui-text-field type="password" v-model.trim="formChangePwd.newPwd" toggle-password
+            label="新密码"></mdui-text-field>
         </p>
         <p>
-          <mdui-text-field type="password" v-model.trim="formChangePwd.rePwd" toggle-password label="确认密码"></mdui-text-field>
+          <mdui-text-field type="password" v-model.trim="formChangePwd.rePwd" toggle-password
+            label="确认密码"></mdui-text-field>
         </p>
         <p>
-          注意: 由于一些特殊的设计，我们并不会检查密码的强度，但是请确保您的密码足够安全。
+          注意: 由于一些特殊的设计，我们并不会检查密码的强度，但是请确保您的密码足够安全，你的密码并不会泄露在数据库中。
         </p>
         <mdui-button type="submit">提交</mdui-button>
       </form>

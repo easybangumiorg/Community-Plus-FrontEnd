@@ -88,6 +88,20 @@ export const useUserStore = defineStore('user', {
                 throw err
             }
         },
+        async chpasswd(oldPasswd: string, newPasswd: string) {
+            try {
+                const res = await post('/user/chpasswd', { oldPasswd, newPasswd }, this.token);
+                if (res.code === 200) {
+                    this.logout()
+                }
+                return res
+            } catch (err) {
+                if (err instanceof UnauthorizedException) {
+                    this.logout()
+                }
+                throw err
+            }
+        },
         logout() {
             this.$patch({ token: "" })
             this.$patch({

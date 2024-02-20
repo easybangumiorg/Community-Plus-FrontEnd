@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
 import { onMounted, ref } from 'vue';
-import '@mdui/icons/keyboard-arrow-right.js';
 import { alert, prompt, snackbar } from 'mdui'
 import { useRouter } from 'vue-router';
 

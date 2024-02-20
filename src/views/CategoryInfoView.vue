@@ -2,10 +2,9 @@
 import { getCategory, deleteCategory, updateCategory } from '@/services/category';
 import { onMounted, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import '@mdui/icons/delete-forever.js';
-import '@mdui/icons/edit.js';
 import { useUserStore } from '@/stores';
 import { dialog, prompt, snackbar } from 'mdui'
+import { showErr } from '@/shared/requestProc';
 
 const router = useRouter();
 const route = useRoute();
@@ -19,14 +18,7 @@ const category_info = reactive({
 onMounted(() => {
     getCategory(category_info.cid).then((res) => {
         category_info.cname = res.data.name;
-    }).catch((err) => {
-        if (err.code) {
-            snackbar({
-                message: `加载分类失败: ${err.msg}`,
-                placement: 'top',
-            });
-        }
-    })
+    }).catch(showErr("获取分类信息失败"));
 });
 
 const action_editName = () => {
@@ -47,14 +39,7 @@ const action_editName = () => {
                     placement: 'top',
                 });
                 category_info.cname = value;
-            }).catch((err) => {
-                if (err.code) {
-                    snackbar({
-                        message: `修改分类失败: ${err.msg}`,
-                        placement: 'top',
-                    });
-                }
-            })
+            }).catch(showErr("修改名称失败"))
         },
     });
 };
@@ -76,14 +61,7 @@ const action_deleteCategory = () => {
                             placement: 'top',
                         });
                         router.push({ name: 'category' });
-                    }).catch((err) => {
-                        if (err.code) {
-                            snackbar({
-                                message: `删除分类失败: ${err.msg}`,
-                                placement: 'top',
-                            });
-                        }
-                    });
+                    }).catch(showErr("删除分类失败"));
                 },
             },
         ],

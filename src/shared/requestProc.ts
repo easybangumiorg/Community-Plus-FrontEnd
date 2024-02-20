@@ -1,4 +1,5 @@
 import { ForbiddenException, UnauthorizedException, BadRequestException, type requestDto, UndefindedException, NotFoundException } from ".";
+import { snackbar } from "mdui"
 
 export const requestMsgDict: { [key: string]: string } = {
     'success': '成功',
@@ -51,4 +52,18 @@ export function requestProc(data: requestDto) {
     }
 
     return data;
+}
+
+export function showErr(header: string = "") {
+    if (header) header += ": ";
+
+    return function (err: any) {
+        if (err.code) {
+            snackbar({
+                message: `${header}${err.msg}`,
+                placement: 'top',
+            });
+        }
+        throw err;
+    }
 }

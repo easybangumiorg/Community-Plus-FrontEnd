@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import '@mdui/icons/light-mode.js';
-import '@mdui/icons/dark-mode.js';
-import '@mdui/icons/brightness-auto.js';
-import '@mdui/icons/login.js';
-import '@mdui/icons/logout.js';
-import '@mdui/icons/info.js';
 import {
     getTheme,
     setTheme,

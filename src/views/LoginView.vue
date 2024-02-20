@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
-import '@mdui/icons/arrow-forward.js';
 import { snackbar } from 'mdui';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';

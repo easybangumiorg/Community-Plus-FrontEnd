@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import '@mdui/icons/add.js';
-import '@mdui/icons/category.js';
-import '@mdui/icons/video-library.js';
-import '@mdui/icons/settings.js';
-import '@mdui/icons/bar-chart.js';
-import '@mdui/icons/movie.js';
-import '@mdui/icons/people.js';
-
 import { useUserStore } from '@/stores';
 import { useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue';

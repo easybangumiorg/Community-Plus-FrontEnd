@@ -2,26 +2,26 @@ import { get, post, del } from "./request"
 import { useUserStore } from "@/stores"
 
 export const getCategoryList = () => {
-    const user = useUserStore();
-    return get("/category/getAll", user.token)
+    const { token } = useUserStore();
+    return get("/category/getAll", token)
 }
 
 export const getCategory = (cid: number) => {
-    const user = useUserStore();
-    return get(`/category/${cid}`, user.token)
+    const { token } = useUserStore();
+    return get(`/category/${cid}`, token)
 }
 
 export const addCategory = (name: string) => {
-    const user = useUserStore();
-    return get(`/category/new?name=${encodeURIComponent(name)}`, user.token)
+    const { token } = useUserStore();
+    return get(`/category/new?name=${encodeURIComponent(name)}`, token)
 }
 
 export const deleteCategory = (cid: number) => {
-    const user = useUserStore();
-    return del(`/category/${cid}`, user.token)
+    const { token } = useUserStore();
+    return del(`/category/${cid}`, token)
 }
 
 export const updateCategory = (cid: number, name: string) => {
-    const user = useUserStore();
-    return post(`/category/${cid}?name=${encodeURIComponent(name)}`, {}, user.token)
+    const { token } = useUserStore();
+    return post(`/category/${cid}?name=${encodeURIComponent(name)}`, {}, token)
 }

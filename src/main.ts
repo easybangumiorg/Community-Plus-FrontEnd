@@ -3,6 +3,7 @@ import './assets/main.scss'
 import 'mdui'
 import { setColorScheme } from 'mdui';
 setColorScheme('#c2e7ff')
+import '@/shared/icons'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
